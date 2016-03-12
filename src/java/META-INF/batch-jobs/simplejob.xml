@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<job id="simplejob"
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee
+http://www.oracle.com/webfolder/technetwork/jsc/xml/ns/javaee/jobXML_1_0.xsd"
+xmlns="http://xmlns.jcp.org/xml/ns/javaee" version="1.0"
+>
+     <properties>
+        <property name="input_file" value="c:\\temp\\test_in.txt"/>
+        <property name="output_file" value="c:\\temp\\test_out.txt"/>
+    </properties>
+    
+    <step id="mychunk" next="mytask">
+        <chunk>
+            <reader ref="MyReader"></reader>
+            <processor ref="MyProcessor"></processor>
+            <writer ref="MyWriter"></writer>
+        </chunk>
+    </step>
+    
+    <step id="mytask">
+        <batchlet ref="MyBatchlet"></batchlet>
+        <end on="COMPLETED"/>
+    </step>
+    
+</job>
